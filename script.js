@@ -79,6 +79,65 @@ let arrayDeClases = [
   },
 ];
 
+document.addEventListener('DOMContentLoaded', () => {
+  const yogaClassList = document.getElementById('yoga-class-list');
+  const spinningClassList = document.getElementById('spinning-class-list');
+  const funcionalClassList = document.getElementById('funcional-class-list');
+
+  const reservarYoga = document.getElementById("reservarYoga")
+  const reservarSpinning = document.getElementById("reservarSpinning")
+  const reservarFuncional = document.getElementById("reservarFuncional")
+
+
+  reservarYoga.addEventListener("click", () => {
+    const yogaClasses = arrayDeClases.filter(clase => clase.nombre === "Yoga");
+    yogaClassList.innerHTML = '';
+    yogaClasses.forEach((clase, index) => {
+      const li = document.createElement('li');
+      li.className = 'list-group-item';
+      li.innerHTML = `
+          ${clase.nombre} - ${clase.dia} ${clase.horario}
+          <button class="btn btn-primary btn-sm" data-index="${index}">Reservar</button>
+      `;
+      yogaClassList.appendChild(li);
+    });
+    $('#yogaModal').modal('show')
+  })
+
+  reservarSpinning.addEventListener("click", () => {
+    const spinningClasses = arrayDeClases.filter(clase => clase.nombre === "Ciclismo");
+    spinningClassList.innerHTML = '';
+    spinningClasses.forEach((clase, index) => {
+      const li = document.createElement('li');
+      li.className = 'list-group-item';
+      li.innerHTML = `
+          ${clase.nombre} - ${clase.dia} ${clase.horario}
+          <button class="btn btn-primary btn-sm" data-index="${index}">Reservar</button>
+      `;
+      spinningClassList.appendChild(li);
+    });
+    $('#spinningModal').modal('show')
+  })
+
+  reservarFuncional.addEventListener("click", () => {
+    const FuncionalClasses = arrayDeClases.filter(clase => clase.nombre === "Funcional");
+    funcionalClassList.innerHTML = '';
+    FuncionalClasses.forEach((clase, index) => {
+      const li = document.createElement('li');
+      li.className = 'list-group-item';
+      li.innerHTML = `
+          ${clase.nombre} - ${clase.dia} ${clase.horario}
+          <button class="btn btn-primary btn-sm" data-index="${index}">Reservar</button>
+      `;
+      funcionalClassList.appendChild(li);
+    });
+    $('#funcionalModal').modal('show')
+  })
+
+
+});
+/*
+
 function mostrarClase(clase) {
   console.log(JSON.stringify(clase));
   const text =
@@ -169,3 +228,5 @@ function core() {
 }
 
 core();
+
+*/

@@ -1,0 +1,16 @@
+.main{
+    padding: 1rem;
+}
+
+.clases{
+    display: inline-flex;
+}
+
+.card-conteiner{
+    padding: 1rem;
+}
+
+body {
+    margin: 20px;
+    padding: 2rem;
+}
