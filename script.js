@@ -1,6 +1,9 @@
-let clasesReservadas = [];
+let clasesReservadas =
+  JSON.parse(localStorage.getItem("clasesReservadas")) || [];
+
 let arrayDeClases = [
   {
+    id: "1",
     nombre: "Yoga",
     instructor: "Cande",
     capacidad: 5,
@@ -8,6 +11,7 @@ let arrayDeClases = [
     horario: "09:30",
   },
   {
+    id: "2",
     nombre: "Yoga",
     instructor: "Cande",
     capacidad: 5,
@@ -15,6 +19,7 @@ let arrayDeClases = [
     horario: "16:30",
   },
   {
+    id: "3",
     nombre: "Yoga",
     instructor: "Cande",
     capacidad: 5,
@@ -22,6 +27,7 @@ let arrayDeClases = [
     horario: "19:00",
   },
   {
+    id: "4",
     nombre: "Yoga",
     instructor: "Cande",
     capacidad: 5,
@@ -29,6 +35,7 @@ let arrayDeClases = [
     horario: "16:30",
   },
   {
+    id: "5",
     nombre: "Yoga",
     instructor: "Cande",
     capacidad: 5,
@@ -36,6 +43,7 @@ let arrayDeClases = [
     horario: "19:00",
   },
   {
+    id: "6",
     nombre: "Yoga",
     instructor: "Cande",
     capacidad: 5,
@@ -43,6 +51,7 @@ let arrayDeClases = [
     horario: "09:30",
   },
   {
+    id: "7",
     nombre: "Funcional",
     instructor: "Andres",
     capacidad: 5,
@@ -50,6 +59,7 @@ let arrayDeClases = [
     horario: "20:00",
   },
   {
+    id: "8",
     nombre: "Funcional",
     instructor: "Andres",
     capacidad: 5,
@@ -57,6 +67,7 @@ let arrayDeClases = [
     horario: "20:00",
   },
   {
+    id: "9",
     nombre: "Funcional",
     instructor: "Andres",
     capacidad: 5,
@@ -64,6 +75,7 @@ let arrayDeClases = [
     horario: "20:00",
   },
   {
+    id: "10",
     nombre: "Ciclismo",
     instructor: "Marcela",
     capacidad: 5,
@@ -71,6 +83,7 @@ let arrayDeClases = [
     horario: "13:30",
   },
   {
+    id: "11",
     nombre: "Ciclismo",
     instructor: "Marcela",
     capacidad: 5,
@@ -79,154 +92,243 @@ let arrayDeClases = [
   },
 ];
 
-document.addEventListener('DOMContentLoaded', () => {
-  const yogaClassList = document.getElementById('yoga-class-list');
-  const spinningClassList = document.getElementById('spinning-class-list');
-  const funcionalClassList = document.getElementById('funcional-class-list');
+const yogaClassList = document.getElementById("yoga-class-list");
+const spinningClassList = document.getElementById("spinning-class-list");
+const funcionalClassList = document.getElementById("funcional-class-list");
 
-  const reservarYoga = document.getElementById("reservarYoga")
-  const reservarSpinning = document.getElementById("reservarSpinning")
-  const reservarFuncional = document.getElementById("reservarFuncional")
+const reservarYogaBtn = document.getElementById("reservarYogaBtn");
+const LiberarYogaBtn = document.getElementById("LiberarYogaBtn");
 
+const reservarSpinningBtn = document.getElementById("reservarSpinningBtn");
+const LiberarSpinningBtn = document.getElementById("LiberarSpinningBtn");
 
-  reservarYoga.addEventListener("click", () => {
-    const yogaClasses = arrayDeClases.filter(clase => clase.nombre === "Yoga");
-    yogaClassList.innerHTML = '';
-    yogaClasses.forEach((clase, index) => {
-      const li = document.createElement('li');
-      li.className = 'list-group-item';
-      li.innerHTML = `
-          ${clase.nombre} - ${clase.dia} ${clase.horario}
-          <button class="btn btn-primary btn-sm" data-index="${index}">Reservar</button>
-      `;
-      yogaClassList.appendChild(li);
-    });
-    $('#yogaModal').modal('show')
-  })
+const reservarFuncionalBtn = document.getElementById("reservarFuncionalBtn");
+const LiberarFuncionalBtn = document.getElementById("LiberarFuncionalBtn");
 
-  reservarSpinning.addEventListener("click", () => {
-    const spinningClasses = arrayDeClases.filter(clase => clase.nombre === "Ciclismo");
-    spinningClassList.innerHTML = '';
-    spinningClasses.forEach((clase, index) => {
-      const li = document.createElement('li');
-      li.className = 'list-group-item';
-      li.innerHTML = `
-          ${clase.nombre} - ${clase.dia} ${clase.horario}
-          <button class="btn btn-primary btn-sm" data-index="${index}">Reservar</button>
-      `;
-      spinningClassList.appendChild(li);
-    });
-    $('#spinningModal').modal('show')
-  })
+///////////////Yoga/////////////////
 
-  reservarFuncional.addEventListener("click", () => {
-    const FuncionalClasses = arrayDeClases.filter(clase => clase.nombre === "Funcional");
-    funcionalClassList.innerHTML = '';
-    FuncionalClasses.forEach((clase, index) => {
-      const li = document.createElement('li');
-      li.className = 'list-group-item';
-      li.innerHTML = `
-          ${clase.nombre} - ${clase.dia} ${clase.horario}
-          <button class="btn btn-primary btn-sm" data-index="${index}">Reservar</button>
-      `;
-      funcionalClassList.appendChild(li);
-    });
-    $('#funcionalModal').modal('show')
-  })
+reservarYogaBtn.addEventListener("click", () => {
 
 
-});
-/*
-
-function mostrarClase(clase) {
-  console.log(JSON.stringify(clase));
-  const text =
-    " " + clase.nombre + "-" + " " + clase.dia + " " + clase.horario + "\n";
-  return text;
-}
-
-function listarClases(clases, mensaje) {
-  console.log("Listar clases: ");
-  clases.forEach((clase, index) => {
-    mensaje += index + 1 + "-" + mostrarClase(clase);
-  });
-  return mensaje;
-}
-
-function reservarClase() {
-  let mensaje = "Seleccionar la clase que desea reservar:\n";
-  let lista = listarClases(arrayDeClases, mensaje);
-  console.log(lista);
-  const selec = Number(prompt(lista));
-  console.log(selec);
-  clasesReservadas.push(arrayDeClases[selec - 1]);
-  arrayDeClases.splice(selec - 1, 1);
-  let indice = clasesReservadas.length-1;
-  alert("Clase reservada: " + mostrarClase(clasesReservadas[indice]));
-}
-
-function liberarClase() {
-  if (clasesReservadas.length <= 0) {
-    alert("No tiene clases reservadas.");
-    return
-  }
-  let mensaje = "Seleccionar la clase que desea liberar:\n";
-  let lista = listarClases(clasesReservadas, mensaje);
-  const selec = Number(prompt(lista));
-  arrayDeClases.push(clasesReservadas[selec - 1]);
-  clasesReservadas.splice(selec - 1, 1);
-  let indice = arrayDeClases.length - 1;
-  alert("Clase liberada: " + mostrarClase(arrayDeClases[indice]));
-}
-
-function mostrarClasesReservadas() {
-  if (clasesReservadas.length <= 0) {
-    alert("No tiene clases reservadas.");
-  }
-  console.log("Clases reservadas:");
-  let mensaje = "Clases Reservadas:\n";
-  let lista = listarClases(clasesReservadas, mensaje);
-  return alert(lista);
-}
-
-function core() {
-
-  let opcion = Number(
-    prompt("Seleccione accion a realizar:\n 1-Reservar Clase\n 2-Liberar Clase")
+  ///Filtrar solo clases no reservadas/Disponibles
+  let clasesDisponibles = arrayDeClases.filter(
+    (clase) =>
+      !clasesReservadas.some(
+        (reservada) =>
+          reservada.nombre === clase.nombre &&
+          reservada.nombre === "Yoga" &&
+          reservada.instructor === clase.instructor &&
+          reservada.dia === clase.dia &&
+          reservada.horario === clase.horario
+      )
   );
 
-  while (isNaN(opcion)) {
-    alert("Eso no es un numero");
-    opcion = Number(
-      prompt(
-        "Seleccione accion a realizar:\n 1-Reservar Clase\n 2-Liberar Clase"
-      )
-    );
-  }
+  const yogaClasses = clasesDisponibles.filter(
+    (clase) => clase.nombre === "Yoga"
+  );
+  yogaClassList.innerHTML = "";
+  yogaClasses.forEach((clase, index) => {
+    const li = document.createElement("li");
+    li.className = "list-group-item";
+    li.innerHTML = `
+          ${clase.nombre} - ${clase.dia} ${clase.horario}
+      `;
+    li.addEventListener("click", () => yogaseleccionarClase(clase));
+    yogaClassList.appendChild(li);
+  });
+  $("#yogaModal").modal("show");
+});
 
-  while (opcion) {
-    
-    switch (opcion) {
-      case 1:
-        reservarClase();
-        break;
+LiberarYogaBtn.addEventListener("click", () => {
 
-      case 2:
-        liberarClase();
-        break;
 
-      default:
-        break;
-    }
+  const yogaClasses = clasesReservadas.filter(
+    (clase) => clase.nombre === "Yoga"
+  );
+  yogaClassList.innerHTML = "";
+  yogaClasses.forEach((clase, index) => {
+    const li = document.createElement("li");
+    li.className = "list-group-item";
+    li.innerHTML = `
+          ${clase.nombre} - ${clase.dia} ${clase.horario}
+      `;
+    li.addEventListener("click", () => yogaseleccionarClaseParaLiberar(clase));
+    yogaClassList.appendChild(li);
+  });
+  $("#yogaModal").modal("show");
+});
 
-    opcion = Number(
-      prompt("Seleccione accion a realizar:\n 1-Reservar Clase\n 2-Liberar Clase")
-    );
-  }
+function yogaseleccionarClase(clase) {
+  clasesReservadas.push(clase);
+  arrayDeClases.splice(
+    clasesReservadas.findIndex((clas) => clas.id === clase.id),
+    1
+  );
 
-  mostrarClasesReservadas();
+  localStorage.setItem("clasesReservadas", JSON.stringify(clasesReservadas));
+  $("#yogaModal").modal("hide");
 }
 
-core();
+function yogaseleccionarClaseParaLiberar(clase) {
+  arrayDeClases.push(clase);
+  clasesReservadas.splice(
+    arrayDeClases.findIndex((clas) => clas.id === clase.id),
+    1
+  );
 
-*/
+  localStorage.setItem("clasesReservadas", JSON.stringify(clasesReservadas));
+  $("#yogaModal").modal("hide");
+}
+
+///////////////Spinning/////////////////
+reservarSpinningBtn.addEventListener("click", () => {
+  ///Filtrar solo clases no reservadas/Disponibles
+  let clasesDisponibles = arrayDeClases.filter(
+    (clase) =>
+      !clasesReservadas.some(
+        (reservada) =>
+          reservada.nombre === clase.nombre &&
+          reservada.nombre === "Ciclismo" &&
+          reservada.instructor === clase.instructor &&
+          reservada.dia === clase.dia &&
+          reservada.horario === clase.horario
+      )
+  );
+
+
+
+  const spinningClasses = clasesDisponibles.filter(
+    (clase) => clase.nombre === "Ciclismo"
+  );
+  spinningClassList.innerHTML = "";
+  spinningClasses.forEach((clase, index) => {
+    const li = document.createElement("li");
+    li.className = "list-group-item";
+    li.innerHTML = `
+        ${clase.nombre} - ${clase.dia} ${clase.horario}
+    `;
+    li.addEventListener("click", () => spinningSeleccionarClase(clase));
+    spinningClassList.appendChild(li);
+  });
+  $("#spinningModal").modal("show");
+});
+
+
+LiberarSpinningBtn.addEventListener("click", () => {
+
+
+  const spinningClasses = clasesReservadas.filter(
+    (clase) => clase.nombre === "Ciclismo"
+  );
+  spinningClassList.innerHTML = "";
+  spinningClasses.forEach((clase, index) => {
+    const li = document.createElement("li");
+    li.className = "list-group-item";
+    li.innerHTML = `
+          ${clase.nombre} - ${clase.dia} ${clase.horario}
+      `;
+    li.addEventListener("click", () =>
+      spinningSeleccionarClaseParaLiberar(clase)
+    );
+    spinningClassList.appendChild(li);
+  });
+  $("#spinningModal").modal("show");
+});
+
+function spinningSeleccionarClase(clase) {
+  clasesReservadas.push(clase);
+  arrayDeClases.splice(
+    clasesReservadas.findIndex((clas) => clas.id === clase.id),
+    1
+  );
+  localStorage.setItem("clasesReservadas", JSON.stringify(clasesReservadas));
+  $("#spinningModal").modal("hide");
+}
+
+function spinningSeleccionarClaseParaLiberar(clase) {
+  arrayDeClases.push(clase);
+  clasesReservadas.splice(
+    arrayDeClases.findIndex((clas) => clas.id === clase.id),
+    1
+  );
+ // arrayDeClases.push(clasesReservadas[index]);
+ // clasesReservadas.splice(index, 1);
+
+  localStorage.setItem("clasesReservadas", JSON.stringify(clasesReservadas));
+  $("#spinningModal").modal("hide");
+}
+
+///////////////Funcional/////////////////
+reservarFuncionalBtn.addEventListener("click", () => {
+  ///Filtrar solo clases no reservadas/Disponibles
+  let clasesDisponibles = arrayDeClases.filter(
+    (clase) =>
+      !clasesReservadas.some(
+        (reservada) =>
+          reservada.nombre === clase.nombre &&
+          reservada.nombre === "Funcional" &&
+          reservada.instructor === clase.instructor &&
+          reservada.dia === clase.dia &&
+          reservada.horario === clase.horario
+      )
+  );
+
+
+
+  const funcionalClasses = clasesDisponibles.filter(
+    (clase) => clase.nombre === "Funcional"
+  );
+  funcionalClassList.innerHTML = "";
+  funcionalClasses.forEach((clase, index) => {
+    const li = document.createElement("li");
+    li.className = "list-group-item";
+    li.innerHTML = `
+        ${clase.nombre} - ${clase.dia} ${clase.horario}
+    `;
+    li.addEventListener("click", () => funcionalSeleccionarClase(clase));
+    funcionalClassList.appendChild(li);
+  });
+  $("#funcionalModal").modal("show");
+});
+
+LiberarFuncionalBtn.addEventListener("click", () => {
+
+  const funcionalClasses = clasesReservadas.filter(
+    (clase) => clase.nombre === "Funcional"
+  );
+  funcionalClassList.innerHTML = "";
+  funcionalClasses.forEach((clase, index) => {
+    const li = document.createElement("li");
+    li.className = "list-group-item";
+    li.innerHTML = `
+          ${clase.nombre} - ${clase.dia} ${clase.horario}
+      `;
+    li.addEventListener("click", () =>
+      funcionalSeleccionarClaseParaLiberar(clase)
+    );
+    funcionalClassList.appendChild(li);
+  });
+  $("#funcionalModal").modal("show");
+});
+
+function funcionalSeleccionarClase(clase) {
+  clasesReservadas.push(clase);
+  arrayDeClases.splice(
+    clasesReservadas.findIndex((clas) => clas.id === clase.id),
+    1
+  );
+
+  localStorage.setItem("clasesReservadas", JSON.stringify(clasesReservadas));
+  $("#funcionalModal").modal("hide");
+}
+
+function funcionalSeleccionarClaseParaLiberar(clase) {
+  arrayDeClases.push(clase);
+  clasesReservadas.splice(
+    arrayDeClases.findIndex((clas) => clas.id === clase.id),
+    1
+  );
+
+  localStorage.setItem("clasesReservadas", JSON.stringify(clasesReservadas));
+  $("#funcionalModal").modal("hide");
+}

@@ -1,14 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
     <!-- Required meta tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GYM Fitness</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
@@ -17,47 +17,55 @@
         <p>Desde esta App podrás reservar clases y sus horarios.</p>
         <h2>Clases:</h2>
         <div class="clases" id="clases">
-
             <div class="card-conteiner">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="./img/yoga.jpg" alt="Card image cap">
+                <div class="card" style="width: 18rem">
+                    <img class="card-img-top" src="./img/yoga.jpg" alt="Card image cap" />
                     <div class="card-body">
                         <h5 class="card-title">Yoga</h5>
-                        <p class="card-text">Las posturas son el vehículo que nos conecta físicamente con el alma y van
-                            siempre unidas a la respiración: pranayama.</p>
-                        <a href="#" class="btn btn-primary" id="reservarYoga">Reservar</a>
+                        <p class="card-text">
+                            Las posturas son el vehículo que nos conecta físicamente con el
+                            alma y van siempre unidas a la respiración: pranayama.
+                        </p>
+                        <a href="#" class="btn btn-primary" id="reservarYogaBtn">Reservar</a>
+                        <a href="#" class="btn btn-secondary" id="LiberarYogaBtn">Liberar</a>
                     </div>
                 </div>
             </div>
             <div class="card-conteiner">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="./img/spinning.jpg" alt="Card image cap">
+                <div class="card" style="width: 18rem">
+                    <img class="card-img-top" src="./img/spinning.jpg" alt="Card image cap" />
                     <div class="card-body">
                         <h5 class="card-title">Spinning</h5>
-                        <p class="card-text">Ejercicio físico colectivo, el cual se realiza sobre una bicicleta estática
-                            al ritmo de la música, en la que se efectúa un trabajo cardiovascular de alta intensidad con
-                            intervención muy elevada de los grandes grupos musculares del tren inferior.</p>
-                        <a href="#" class="btn btn-primary" id="reservarSpinning">Reservar</a>
+                        <p class="card-text">
+                            Ejercicio físico colectivo, el cual se realiza sobre una
+                            bicicleta estática al ritmo de la música, en la que se efectúa
+                            un trabajo cardiovascular de alta intensidad con intervención
+                            muy elevada de los grandes grupos musculares del tren inferior.
+                        </p>
+                        <a href="#" class="btn btn-primary" id="reservarSpinningBtn">Reservar</a>
+                        <a href="#" class="btn btn-secondary" id="LiberarSpinningBtn">Liberar</a>
                     </div>
                 </div>
             </div>
 
             <div class="card-conteiner">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="./img/funcional.jpg" alt="Card image cap">
+                <div class="card" style="width: 18rem">
+                    <img class="card-img-top" src="./img/funcional.jpg" alt="Card image cap" />
                     <div class="card-body">
                         <h5 class="card-title">Entrenamiento Funcional</h5>
-                        <p class="card-text">Se basa en movimientos naturales del cuerpo para mejorar la fuerza, la
-                            flexibilidad, la coordinación, la estabilidad y la resistencia. El objetivo es que las
-                            actividades diarias sean más fáciles y naturales de realizar.</p>
-                        <a href="#" class="btn btn-primary" id="reservarFuncional">Reservar</a>
+                        <p class="card-text">
+                            Se basa en movimientos naturales del cuerpo para mejorar la
+                            fuerza, la flexibilidad, la coordinación, la estabilidad y la
+                            resistencia. El objetivo es que las actividades diarias sean más
+                            fáciles y naturales de realizar.
+                        </p>
+                        <a href="#" class="btn btn-primary" id="reservarFuncionalBtn">Reservar</a>
+                        <a href="#" class="btn btn-secondary" id="LiberarFuncionalBtn">Liberar</a>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
 
     <!-- Modal Yoga-->
     <div class="modal fade" id="yogaModal" tabindex="-1" role="dialog" aria-labelledby="yogaModalLabel"
@@ -74,7 +82,9 @@
                     <ul id="yoga-class-list" class="list-group"></ul>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Cerrar
+                    </button>
                 </div>
             </div>
         </div>
@@ -86,7 +96,9 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="spinningModalLabel">Clases de Spinning</h5>
+                    <h5 class="modal-title" id="spinningModalLabel">
+                        Clases de Spinning
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -95,7 +107,9 @@
                     <ul id="spinning-class-list" class="list-group"></ul>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Cerrar
+                    </button>
                 </div>
             </div>
         </div>
@@ -107,7 +121,9 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="funcionalModalLabel">Clases de Yoga</h5>
+                    <h5 class="modal-title" id="funcionalModalLabel">
+                        Clases de Funcional
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -116,7 +132,9 @@
                     <ul id="funcional-class-list" class="list-group"></ul>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Cerrar
+                    </button>
                 </div>
             </div>
         </div>
